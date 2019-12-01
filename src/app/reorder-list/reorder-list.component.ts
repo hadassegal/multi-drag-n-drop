@@ -37,14 +37,21 @@ export class ReorderListComponent {
   @ContentChild('listItem', { static: false })
   listItem: TemplateRef<any>
 
-  @Input()
-  rowMaxItems: number = 4
 
   constructor(private el: ElementRef) {}
 
   getListItemWidth(): number {
     let element = this.el.nativeElement.querySelector('li.list-item')
     return element && element.offsetWidth
+  }
+
+  getContainerWidth(): number {
+    let element = this.el.nativeElement.querySelector('ul.reorder-list-container')
+    return element && element.offsetWidth
+  }
+
+  get rowMaxItems() {
+    return Math.floor(this.getContainerWidth() / this.getListItemWidth())
   }
 
   // Events for currently dragged item
