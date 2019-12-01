@@ -2,9 +2,8 @@
   @import (reference, multiple) '../styles/colors.less';
 
   @list-item-padding: 9px;
-  @list-item-width: 55px;
-  @max-items-in-row: 4;
-  @index-height: 18px;
+  @list-item-width: 80px;
+  @list-item-height: 60px;
 
   ul.reorder-list-container {
     width: 450px;
@@ -53,14 +52,13 @@
         align-items: center;
         justify-content: center;
         width: @list-item-width;
-        height: @list-item-width;
+        height: @list-item-height;
         border-radius: 1px;
         border: 1px dotted @gray65;
         cursor: grab;
         position: relative;
         &.list-item-placeholder {
           position: absolute;
-          top: @index-height + 9px;
           background: white;
         }
         &.drag-over {

@@ -43,10 +43,6 @@ export class ReorderListComponent {
 
   constructor(private el: ElementRef) {}
 
-  ngAfterViewInit() {
-    console.log('hegiht', this.listItemHeight, 'width', this.listItemWidth)
-  }
-
   get listItemWidth(): number {
     let element = this.el.nativeElement.querySelector('li.list-item')
     return element && element.offsetWidth
