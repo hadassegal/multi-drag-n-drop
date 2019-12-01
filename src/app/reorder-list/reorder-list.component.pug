@@ -1,11 +1,13 @@
 ul.reorder-list-container([ngClass]="{'invalid': invalid}")
   li.list-item(*ngFor="let item of items; let i = index;",
+  [id]="'item-' + i",
   (dragover)="onDragOver($event, i)",
   (dragleave)="onDragLeave($event, i)",
   (drop)="onDragDrop($event, i)")
     .index {{i + 1}}
     .draggable-list-item.list-item-placeholder(*ngIf="i === dragOverIndex")
     .draggable-list-item(
+    [ngStyle]="{'transform': transform(i)}",
     [ngClass]="{'drag-over': i === dragOverIndex, 'currently-dragged': i === draggedIndex, 'move-right': moveRight(i), 'move-left': moveLeft(i), 'move-down': moveDown(i), 'move-up': moveUp(i)}",
     draggable="true",
     (dragstart)="onDragStart($event, i)",

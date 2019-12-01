@@ -1,10 +1,9 @@
 import {
   Component,
-  ContentChild,
+  ContentChild, ElementRef,
   EventEmitter,
   Input,
   Output,
-  SimpleChanges,
   TemplateRef,
 } from '@angular/core'
 
@@ -41,7 +40,12 @@ export class ReorderListComponent {
   @Input()
   rowMaxItems: number = 4
 
-  constructor() {}
+  constructor(private el: ElementRef) {}
+
+  getListItemWidth(): number {
+    let element = this.el.nativeElement.querySelector('li.list-item')
+    return element && element.offsetWidth
+  }
 
   // Events for currently dragged item
 
@@ -74,6 +78,29 @@ export class ReorderListComponent {
     this.reorderItemsInArray(this.draggedIndex, currentIndex)
     this.reset()
     this.onDrag.emit(false)
+  }
+
+  transform(index) {
+    const listItemWidth = this.getListItemWidth(),
+      maxItemsInRow = this.rowMaxItems,
+      indexHeight = 18
+
+    if (this.moveDown(index)) {
+      const translateX = (maxItemsInRow - 1) * -listItemWidth,
+        translateY = listItemWidth + indexHeight
+      return `translate(${translateX}px, ${translateY}px)`
+    }
+    if (this.moveUp(index)) {
+      const translateX = (maxItemsInRow - 1) * listItemWidth,
+        translateY = -listItemWidth - indexHeight
+      return `translate(${translateX}px, ${translateY}px)`
+    }
+    if (this.moveRight(index)) {
+      return `translate(${listItemWidth}px)`
+    }
+    if (this.moveLeft(index)) {
+      return `translate(${-listItemWidth}px)`
+    }
   }
 
   moveRight(index: number) {
