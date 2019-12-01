@@ -3,15 +3,18 @@
 ::ng-deep app-reorder-list {
 
   &.image-with-text {
+    .reorder-list-container {
+      width: 300px !important;
+    }
     .draggable-list-item {
       // For custom cards you will need to override width + height for this class
-      width: 80px !important;
-      height: 80px !important;
+      width: 100px !important;
+      height: 120px !important;
       .container {
         text-align: center;
         img {
-          width: 80px;
-          height: 60px;
+          width: 100px;
+          height: 100px;
         }
       }
     }

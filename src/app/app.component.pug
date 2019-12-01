@@ -3,17 +3,18 @@ app-reorder-list([items]="listItems")
 
 p Custom Cards with Image and text
 app-reorder-list.image-with-text(
-[items]="listItems")
+[items]="plants")
   ng-template(#listItem, let-item="item", let-index="index")
     .container
-      img([src]="item", draggable="false")
-      div cat {{index}}
+      img([src]="item.image", draggable="false")
+      div {{item.text}}
 
 h2 STYLING
 
 div You can override these classes with css:
   li .draggable-list-item (width + height)
   li .list-item-placeholder
+  li .reorder-list-container (width + height)
 
 h2 CUSTOM TEMPLATE
 ul
