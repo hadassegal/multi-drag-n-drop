@@ -1,29 +1,12 @@
 @import (reference, multiple) './styles/colors.less';
 
-.image-container {
-  img {
-    //width: 55px !important;
-    //height: 55px !important;
-  }
-}
-
 ::ng-deep app-reorder-list {
-  .image-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    //&:after {
-    //  width: 100%;
-    //  height: 100%;
-    //  background: red;
-    //}
-    //&:hover {
-    //  outline: 1px solid @gray45;
-    //}
-  }
   img {
     width: 100%;
     height: 100%;
     position: relative;
+    &:hover {
+      outline: 1px solid @gray45;
+    }
   }
 }
