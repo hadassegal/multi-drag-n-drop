@@ -1,5 +1,6 @@
 ul.reorder-list-container([ngClass]="{'invalid': invalid}")
   li.list-item(*ngFor="let item of items; let i = index;",
+  draggable="false",
   [id]="'item-' + i",
   (dragover)="onDragOver($event, i)",
   (dragleave)="onDragLeave($event, i)",
@@ -12,7 +13,7 @@ ul.reorder-list-container([ngClass]="{'invalid': invalid}")
     draggable="true",
     (dragstart)="onDragStart($event, i)",
     (dragend)="onDragEnd($event, i)")
-      ng-container(*ngTemplateOutlet="listItem; context: {item: item}")
+      ng-container(*ngTemplateOutlet="listItem; context: {item: item, index: i}")
       i.icon-CloseX(*ngIf="showRemove", (click)="remove(item, i)")
   .placeholder(*ngIf="!items.length")
     span Select cards from the left panel.

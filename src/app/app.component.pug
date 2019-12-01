@@ -1,5 +1,12 @@
-app-reorder-list(
+app-reorder-list.only-image(
 [items]="listItems")
   ng-template(#listItem, let-item="item")
     img([src]="item", draggable="false")
+
+app-reorder-list.image-with-text(
+[items]="listItems")
+  ng-template(#listItem, let-item="item", let-index="index")
+    .container
+      img([src]="item", draggable="false")
+      div cat {{index}}
 
