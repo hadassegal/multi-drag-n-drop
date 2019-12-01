@@ -40,18 +40,23 @@ export class ReorderListComponent {
 
   constructor(private el: ElementRef) {}
 
-  getListItemWidth(): number {
+  get listItemWidth(): number {
     let element = this.el.nativeElement.querySelector('li.list-item')
     return element && element.offsetWidth
   }
 
-  getContainerWidth(): number {
+  get listItemHeight(): number {
+    let element = this.el.nativeElement.querySelector('li.list-item')
+    return element && element.offsetWidth
+  }
+
+  get containerWidth(): number {
     let element = this.el.nativeElement.querySelector('ul.reorder-list-container')
     return element && element.offsetWidth
   }
 
   get rowMaxItems() {
-    return Math.floor(this.getContainerWidth() / this.getListItemWidth())
+    return Math.floor(this.containerWidth / this.listItemWidth)
   }
 
   // Events for currently dragged item
@@ -88,25 +93,23 @@ export class ReorderListComponent {
   }
 
   transform(index) {
-    const listItemWidth = this.getListItemWidth(),
-      maxItemsInRow = this.rowMaxItems,
-      indexHeight = 18
+    const indexHeight = 18
 
     if (this.moveDown(index)) {
-      const translateX = (maxItemsInRow - 1) * -listItemWidth,
-        translateY = listItemWidth + indexHeight
+      const translateX = (this.rowMaxItems - 1) * -this.listItemWidth,
+        translateY = this.listItemWidth + indexHeight
       return `translate(${translateX}px, ${translateY}px)`
     }
     if (this.moveUp(index)) {
-      const translateX = (maxItemsInRow - 1) * listItemWidth,
-        translateY = -listItemWidth - indexHeight
+      const translateX = (this.rowMaxItems - 1) * this.listItemWidth,
+        translateY = -this.listItemWidth - indexHeight
       return `translate(${translateX}px, ${translateY}px)`
     }
     if (this.moveRight(index)) {
-      return `translate(${listItemWidth}px)`
+      return `translate(${this.listItemWidth}px)`
     }
     if (this.moveLeft(index)) {
-      return `translate(${-listItemWidth}px)`
+      return `translate(${-this.listItemWidth}px)`
     }
   }
 
