@@ -31,6 +31,9 @@ export class ReorderListComponent {
   @Input()
   showRemove: boolean = true
 
+  @Input()
+  showIndex: boolean = true
+
   dragOverIndex: number
   draggedIndex: number
 
@@ -40,6 +43,10 @@ export class ReorderListComponent {
 
   constructor(private el: ElementRef) {}
 
+  ngAfterViewInit() {
+    console.log('hegiht', this.listItemHeight, 'width', this.listItemWidth)
+  }
+
   get listItemWidth(): number {
     let element = this.el.nativeElement.querySelector('li.list-item')
     return element && element.offsetWidth
@@ -47,7 +54,7 @@ export class ReorderListComponent {
 
   get listItemHeight(): number {
     let element = this.el.nativeElement.querySelector('li.list-item')
-    return element && element.offsetWidth
+    return element && element.offsetHeight
   }
 
   get containerWidth(): number {
@@ -93,16 +100,14 @@ export class ReorderListComponent {
   }
 
   transform(index) {
-    const indexHeight = 18
-
     if (this.moveDown(index)) {
       const translateX = (this.rowMaxItems - 1) * -this.listItemWidth,
-        translateY = this.listItemWidth + indexHeight
+        translateY = this.listItemHeight
       return `translate(${translateX}px, ${translateY}px)`
     }
     if (this.moveUp(index)) {
       const translateX = (this.rowMaxItems - 1) * this.listItemWidth,
-        translateY = -this.listItemWidth - indexHeight
+        translateY = -this.listItemHeight
       return `translate(${translateX}px, ${translateY}px)`
     }
     if (this.moveRight(index)) {

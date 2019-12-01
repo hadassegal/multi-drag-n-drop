@@ -4,7 +4,7 @@ ul.reorder-list-container([ngClass]="{'invalid': invalid}")
   (dragover)="onDragOver($event, i)",
   (dragleave)="onDragLeave($event, i)",
   (drop)="onDragDrop($event, i)")
-    .index {{i + 1}}
+    .index(*ngIf="showIndex") {{i + 1}}
     .draggable-list-item.list-item-placeholder(*ngIf="i === dragOverIndex")
     .draggable-list-item(
     [ngStyle]="{'transform': transform(i)}",
