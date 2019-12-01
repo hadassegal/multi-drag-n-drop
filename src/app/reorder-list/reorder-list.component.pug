@@ -13,8 +13,14 @@ ul.reorder-list-container([ngClass]="{'invalid': invalid}")
     draggable="true",
     (dragstart)="onDragStart($event, i)",
     (dragend)="onDragEnd($event, i)")
-      ng-container(*ngTemplateOutlet="listItem; context: {item: item, index: i}")
+
+      img(*ngIf="!listItem", [src]="item", draggable="false")
+
+      .template-container(*ngIf="listItem")
+        ng-container(*ngTemplateOutlet="listItem; context: {item: item, index: i}")
+
       i.icon-CloseX(*ngIf="showRemove", (click)="remove(item, i)")
+
   .placeholder(*ngIf="!items.length")
     span Select cards from the left panel.
     span You can change the order of the cards by dragging them around.
