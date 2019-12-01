@@ -3,7 +3,8 @@
 
   @list-item-padding: 9px;
   @list-item-width: 55px;
-  @list-item-translate: 2 * @list-item-padding + @list-item-width;
+  @border-offset: 2px;
+  @list-item-translate: 2 * @list-item-padding + @list-item-width + @border-offset;
   @max-items-in-row: 4;
   @index-height: 18px;
 
@@ -18,10 +19,6 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     list-style-type: none !important;
-
-    &.invalid{
-      border-color: @red62;
-    }
 
     .placeholder {
       display: flex;
@@ -66,7 +63,6 @@
         &.list-item-placeholder {
           position: absolute;
           top: @index-height + 9px;
-          z-index: 99;
           background: white;
         }
         &.drag-over {
