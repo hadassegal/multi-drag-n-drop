@@ -1,6 +1,5 @@
 p Cards with Image only
-app-reorder-list.only-image(
-[items]="listItems")
+app-reorder-list([items]="listItems")
 
 p Custom Cards with Image and text
 app-reorder-list.image-with-text(
@@ -10,3 +9,25 @@ app-reorder-list.image-with-text(
       img([src]="item", draggable="false")
       div cat {{index}}
 
+h2 STYLING
+
+div You can override these classes with css:
+  li .draggable-list-item (width + height)
+  li .list-item-placeholder
+
+h2 CUSTOM TEMPLATE
+ul
+  li For custom cards you will need to override the default width + height for the class 'draggable-list-item'
+  li example provided for image and text
+
+h2 INPUTS
+
+ul
+  li items
+  li showRemove
+  li showIndex
+
+h2 OUTPUTS
+ul
+  li onChange - outputs the updated ordered list (array)
+  li onDrag - you probably wont need this, but will be useful if you have other drag event listeners, which you may want to disable while dragging here

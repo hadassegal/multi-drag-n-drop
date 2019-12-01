@@ -16,9 +16,6 @@ export class ReorderListComponent {
   @Input()
   items: any[] = []
 
-  @Input()
-  invalid = false
-
   @Output()
   onChange: EventEmitter<any> = new EventEmitter()
 
